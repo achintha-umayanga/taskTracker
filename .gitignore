@@ -1,0 +1,55 @@
+## Professional .NET / C# Gitignore ##
+
+# Target directories (Build outputs)
+.dotnet/
+/**/bin/
+/**/obj/
+
+# Tools
+.config/dotnet-tools.json
+
+# Visual Studio files
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# User-specific files & Local Configurations
+*.rsuser
+*.suo
+*.userpreferences
+appsettings.Development.json
+appsettings.Local.json
+
+# Secrets & Environment variables
+.env
+.env.*
+secrets.json
+
+# EF Core Migrations & SQL Tools (if generated locally)
+*.db
+*.db-shm
+*.db-wal
+*.sql
+*.dacpac
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Test outputs, coverage, and reports
+BenchmarkDotNet.Artifacts/
+TestResults/
+*.debugger_chronicles
