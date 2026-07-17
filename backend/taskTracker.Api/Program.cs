@@ -24,6 +24,13 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
+// Add Task Services
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<CreateTaskCommand>();
+builder.Services.AddScoped<UpdateTaskCommand>();
+builder.Services.AddScoped<DeleteTaskCommand>();
+builder.Services.AddScoped<GetAllTasksCommand>();
+
 // Add JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key is not configured");
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? throw new InvalidOperationException("Jwt:Issuer is not configured");
