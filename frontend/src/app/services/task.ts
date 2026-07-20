@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -59,7 +59,12 @@ export class TaskService {
     return this.http.delete<{ message: string }>(`${this.apiUrl}/deleteTask/${id}`);
   }
 
-  getAllTasks(): Observable<TaskResponse[]> {
-    return this.http.get<TaskResponse[]>(`${this.apiUrl}/getAllTasks`);
+  getAllTasks(searchTerm?: string): Observable<TaskResponse[]> {
+    let params = new HttpParams();
+
+    if (searchTerm) {
+      params = params.set('searchTerm', searchTerm.trim());
+    }
+    return this.http.get<TaskResponse[]>(`${this.apiUrl}/getAllTasks`, { params });
   }
 }

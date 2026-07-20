@@ -2,11 +2,14 @@
   
   <div class="bg-white border border-[#eceae4] rounded-2xl p-7 pb-2">
     <!-- Simple Header -->
-    <div class="flex items-center mb-5">
-      <h1 class="text-2xl font-semibold mr-2">Tasks</h1>
-      <button (click)="createTaskModalOpen()" class="bg-[#1c1c1a] text-white border-none p-3 rounded-full hover:opacity-90 transition cursor-pointer">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </button>
+    <div class="flex items-center mb-5 justify-between">
+      <div class="flex">
+        <h1 class="text-2xl font-semibold mr-2">Tasks</h1>
+        <button (click)="createTaskModalOpen()" class="bg-[#1c1c1a] text-white border-none p-3 rounded-full hover:opacity-90 transition cursor-pointer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+      <input [ngModel]="searchTerm()" (ngModelChange)="onSearchInput($event)" placeholder="Search Tasks" class="w-[200px] p-2 px-3 border border-[#eceae4] bg-[#f0efe9] rounded-lg text-sm outline-none text-[#1c1c1a]">
     </div>
 
     <!-- Loading & Error States -->

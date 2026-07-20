@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   isTaskCreateModalOpen = signal(false);
   isSubmitting = signal(false);
   editingTaskId = signal<string | null>(null);
+  searchTerm = signal<string>('');
 
   createName = signal<string>('');
   createStatus= signal<TaskStatus>(TaskStatus.ToDo);
@@ -37,12 +38,19 @@ export class DashboardComponent implements OnInit {
     this.fetchTasks();
   }
 
+  onSearchInput(value: string): void {
+    this.searchTerm.set(value);
+    this.fetchTasks();
+  }
+
   // fetch tasks
-  fetchTasks(): void {
+  fetchTasks(term?: string): void {
     this.isLoading.set(true);
     this.errorMessage.set('');
 
-    this.taskService.getAllTasks().subscribe({
+    const query = term ?? this.searchTerm();
+
+    this.taskService.getAllTasks(query).subscribe({
       next: (data) => {
         this.tasks.set(data ?? []);
         this.isLoading.set(false);
