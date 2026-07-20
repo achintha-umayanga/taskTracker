@@ -14,7 +14,7 @@ import { AuthService } from '../auth';
 export class RegisterComponent {
   registerForm : FormGroup;
   loading = signal(false);
-  errorMessage : string = '';
+  errorMessage = signal<string>('');
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +35,8 @@ export class RegisterComponent {
           this.router.navigate(['/login'])
         },
         error: (err) => {
-          this.errorMessage = err.error?.message;
+          this.errorMessage.set('User registration failed');
+          // console.log('register error:', err);
         }
       })
     }

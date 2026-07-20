@@ -6,8 +6,8 @@
     </div>
 
     <form class="space-y-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div *ngIf="errorMessage" class="bg-red-50 text-red-700 text-sm p-3 rounded border border-red-200">
-        {{ errorMessage }}
+      <div *ngIf="errorMessage()" class="bg-red-50 text-red-700 text-sm p-3 rounded border border-red-200">
+        {{ errorMessage() }}
       </div>
 
       <div>

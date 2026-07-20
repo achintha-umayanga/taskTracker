@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 
 export class LoginComponent {
   loginForm: FormGroup;
-  errorMessage: string = '';
+  errorMessage = signal<string>('');
 
   constructor(
     private fb: FormBuilder,
@@ -29,13 +29,13 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
-        next: (response) => {
-          console.log('login successful', response);
+        next: () => {
           this.router.navigate(['/dashboard'])
+          this.errorMessage.set('');
         },
         error: (err) => {
           // console.log('login failed', err);
-          this.errorMessage = "Invalid Credentials !"
+          this.errorMessage.set('Invalid Credentials!');
         }
       })
     }
