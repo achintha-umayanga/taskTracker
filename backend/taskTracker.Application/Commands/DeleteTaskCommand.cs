@@ -18,7 +18,7 @@ public class DeleteTaskCommand
 
   public async Task DeleteTask(Guid userId, Guid taskId)
   {
-    var user = _userRepository.GetUserByIdAsync(userId);
+    var user = await _userRepository.GetUserByIdAsync(userId);
     if (user is null)
     {
       throw new InvalidOperationException("User not found");
