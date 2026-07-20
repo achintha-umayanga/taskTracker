@@ -54,9 +54,9 @@ public class TaskController : ControllerBase
   }
 
   [HttpGet("getAllTasks")]
-  public async Task<IActionResult> GetAllTasks()
+  public async Task<IActionResult> GetAllTasks([FromQuery] string? searchTerm)
   {
-    var result = await _getAllTAsksCommand.GetAllTasks(CurrentUserId);
+    var result = await _getAllTAsksCommand.GetAllTasks(CurrentUserId, searchTerm);
     return Ok(result);
   }
 }

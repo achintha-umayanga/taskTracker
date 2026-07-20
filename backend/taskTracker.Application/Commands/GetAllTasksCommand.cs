@@ -18,7 +18,7 @@ public class GetAllTasksCommand
     _userRepository = userRepository;
   }
 
-  public async Task<List<TaskResponse>> GetAllTasks(Guid userId)
+  public async Task<List<TaskResponse>> GetAllTasks(Guid userId, string? searchTerm)
   {
     var user = await _userRepository.GetUserByIdAsync(userId);
     if (user is null)
@@ -26,7 +26,7 @@ public class GetAllTasksCommand
       throw new InvalidOperationException("User not found");
     }
 
-    var tasks = await _taskRepository.GetAllTasks(userId);
+    var tasks = await _taskRepository.GetAllTasks(userId, searchTerm);
 
     return tasks
       .Select(t => new TaskResponse(
