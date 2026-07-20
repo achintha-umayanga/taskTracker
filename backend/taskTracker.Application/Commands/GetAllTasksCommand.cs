@@ -30,6 +30,7 @@ public class GetAllTasksCommand
 
     return tasks
       .Select(t => new TaskResponse(
+        t.Id,
         t.Key,
         t.Name,
         t.Status,

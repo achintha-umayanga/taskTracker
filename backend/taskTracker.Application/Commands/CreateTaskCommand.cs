@@ -40,6 +40,7 @@ public class CreateTaskCommand
     await _taskRepository.CreateTaskItemAsync(taskItem);
 
     return new TaskResponse(
+      taskItem.Id,
       taskItem.Key,
       taskItem.Name,
       taskItem.Status,

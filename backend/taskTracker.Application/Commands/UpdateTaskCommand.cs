@@ -42,6 +42,7 @@ public class UpdateTaskCommand
     await _taskRepository.UpdateTaskItemAsync(task);
 
     return new TaskResponse(
+      task.Id,
       task.Key,
       task.Name,
       task.Status,
