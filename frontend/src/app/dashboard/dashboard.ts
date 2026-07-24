@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { CreateTaskRequest, TaskPriority, TaskResponse, TaskService, TaskStatus } from '../services/task';
+import { CreateTaskRequest, TaskPriority, TaskResponse, TaskService, TaskStatus } from '../services/task/task';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
