@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   loginForm: FormGroup;
   errorMessage = signal<string>('');
+  isLogging = signal(false)
 
   constructor(
     private fb: FormBuilder,
@@ -27,11 +28,13 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.isLogging.set(true);
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
           this.router.navigate(['/dashboard'])
           this.errorMessage.set('');
+          this.isLogging.set(false);
         },
         error: (err) => {
           // console.log('login failed', err);

@@ -15,6 +15,7 @@ export class RegisterComponent {
   registerForm : FormGroup;
   loading = signal(false);
   errorMessage = signal<string>('');
+  isRegistering = signal(false);
 
   constructor(
     private fb: FormBuilder,
@@ -29,10 +30,12 @@ export class RegisterComponent {
   }
 
   onSubmit() {
+    this.isRegistering.set(true);
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
           this.router.navigate(['/login'])
+          this.isRegistering.set(false);
         },
         error: (err) => {
           this.errorMessage.set('User registration failed');
